@@ -14,7 +14,7 @@ namespace FireLite.Core.Network
     {
         public int Port { get; set; }
 
-        protected IList<ClientConnection> ConnectedClients { get; private set; }
+        protected IList<ClientConnection> ConnectedClients { get; }
 
         private readonly TcpListener tcpListener;
         private Thread listenThread;
@@ -29,7 +29,7 @@ namespace FireLite.Core.Network
         public void Start()
         {
             tcpListener.Start();
-            
+
             listenThread = new Thread(ListenForClients);
             listenThread.Start();
 
@@ -88,7 +88,7 @@ namespace FireLite.Core.Network
 
         private void HandleClientConnected(object client)
         {
-            var clientConnection = new ClientConnection((TcpClient) client);
+            var clientConnection = new ClientConnection((TcpClient)client);
             ConnectedClients.Add(clientConnection);
 
             clientConnection.Disconnected += HandleClientDisconnected;

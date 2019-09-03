@@ -36,6 +36,8 @@ namespace FireLite.Core.Network
                 return false;
             }
 
+            networkStream = tcpClient.GetStream();
+
             listenThread = new Thread(ListenToServer);
             listenThread.Start();
 
@@ -50,10 +52,7 @@ namespace FireLite.Core.Network
 
             tcpClient.Close();
 
-            if (listenThread != null)
-            {
-                listenThread.Abort();
-            }
+            listenThread?.Abort();
         }
 
         public void SendPacket(byte[] packetBytes)
@@ -84,8 +83,6 @@ namespace FireLite.Core.Network
 
         private void ListenToServer()
         {
-            networkStream = tcpClient.GetStream();
-
             while (true)
             {
                 try

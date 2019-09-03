@@ -5,6 +5,7 @@
         int Port { get; set; }
 
         void Start();
+
         void Stop();
     }
 }

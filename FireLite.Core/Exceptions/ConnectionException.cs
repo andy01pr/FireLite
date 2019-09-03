@@ -4,12 +4,10 @@
     {
         public ConnectionException() : base("The client disconnected unexpectedly")
         {
-            
         }
 
         public ConnectionException(string message) : base(message)
         {
-            
         }
     }
 }

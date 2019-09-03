@@ -6,7 +6,9 @@
         int Port { get; set; }
 
         bool Connect();
+
         void Disconnect();
+
         void SendPacket(byte[] packetBytes);
     }
 }

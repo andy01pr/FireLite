@@ -38,8 +38,7 @@ namespace FireLite.Core.Extensions
             var lengthBuffer = networkStream.ReadNBytes(4);
             var packetLength = BitConverter.ToInt32(lengthBuffer, 0);
 
-            var buffer = networkStream.ReadNBytes(packetLength);
-            return buffer;
+            return networkStream.ReadNBytes(packetLength);
         }
 
         public static void SendPacket(this NetworkStream networkStream, byte[] packetBytes)
